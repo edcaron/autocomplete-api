@@ -6,6 +6,8 @@ This is the backend code for the global search component
 
 ## Setting up
 ```
+composer install
+
 ./vendor/bin/sail up
 
 php artisan migrate
