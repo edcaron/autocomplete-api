@@ -21,6 +21,10 @@ class AutoCompleteRequestTest extends TestCase
         $response = $this->get('/api/autocomplete?search=Super cool');
 
         $response->assertStatus(200);
-        $response->assertJsonStructure(['data' => []]);
+
+        $response->assertJson(['data' => [
+            "Super cool Assignment for today",
+            "Super cool Programming Course"
+        ]]);
     }
 }
