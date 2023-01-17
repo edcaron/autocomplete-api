@@ -6,13 +6,24 @@ This is the backend code for the global search component
 
 ## Setting up
 ```
-composer install
+cd autocomplete-api
 
-./vendor/bin/sail up
+cp -a .env.example .env
 
-php artisan migrate
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
 
-php artisan db:seed
+./vendor/bin/sail up -d
+
+./vendor/bin/sail artisan migrate:install
+
+./vendor/bin/sail artisan migrate
+
+./vendor/bin/sail artisan db:seed
 ```
 
 
